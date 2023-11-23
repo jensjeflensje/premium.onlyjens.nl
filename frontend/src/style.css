@@ -1,0 +1,18 @@
+:root {
+  color: #f1f1ff;
+  background-color: #22272E;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--blue-300);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

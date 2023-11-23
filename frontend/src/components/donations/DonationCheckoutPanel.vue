@@ -1,0 +1,68 @@
+<template>
+  <div id="checkout"></div>
+
+  <Button
+    class="complete-button"
+    label="Complete"
+    size="small"
+    icon="pi pi-angle-right"
+    :disabled="processing"
+    @click="submitPayment" />
+</template>
+
+<script setup lang="ts">
+  import Donation from '@/types/Donation';
+  import { BASE_URL, createPaymentIntent, stripe } from '@/api';
+  import Button from 'primevue/button';
+  import { ref } from 'vue';
+  import { StripeElements, StripePaymentElement } from '@stripe/stripe-js';
+
+  const emit = defineEmits(['update']);
+  const props = defineProps<{data: Donation}>();
+
+  const processing = ref(true);
+  let paymentElement: StripePaymentElement;
+  let elements: StripeElements;
+
+  createPaymentIntent(props.data).then(async clientSecret => {
+    const appearance = {
+      theme: 'night',
+      variables: {
+        colorPrimary: '#60a5fa',
+        colorBackground: '#22272E',
+        fontFamily: 'Inter var, system-ui, sans-serif',
+      }
+    };
+    const options = {
+      layout: {
+        type: 'tabs',
+        defaultCollapsed: false,
+      }
+    };
+    elements = stripe!.elements({ clientSecret, appearance });
+    paymentElement = elements.create('payment', options);
+    paymentElement.mount('#checkout');
+    processing.value = false;
+  });
+
+  async function submitPayment() {
+    processing.value = true;
+    try {
+      stripe!.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${BASE_URL}?payment_status=completed`
+        }
+      });
+    } finally {
+      processing.value = false;
+    }
+  }
+
+</script>
+
+<style scoped>
+  .complete-button {
+    margin-top: 12px;
+  }
+</style>
