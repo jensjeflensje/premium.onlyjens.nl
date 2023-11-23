@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import AboutMe from '@/components/AboutMe.vue'
-import DonationPanel from '@/components/donations/DonationPanel.vue';
-import Header from '@/components/Header.vue'
-</script>
-
 <template>
   <Header/>
   <div class="container-wrapper">
@@ -17,6 +11,12 @@ import Header from '@/components/Header.vue'
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import AboutMe from '@/components/AboutMe.vue'
+import DonationPanel from '@/components/donations/DonationPanel.vue';
+import Header from '@/components/Header.vue'
+</script>
 
 <style scoped>
   .container-wrapper {
