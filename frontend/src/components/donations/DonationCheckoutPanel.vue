@@ -31,7 +31,9 @@
         defaultCollapsed: false,
       }
     };
+    // @ts-ignore
     elements = stripe!.elements({ clientSecret, appearance });
+    // @ts-ignore
     paymentElement = elements.create('payment', options);
     paymentElement.mount('#checkout');
     processing.value = false;
