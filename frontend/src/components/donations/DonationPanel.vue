@@ -18,13 +18,12 @@
     @click="currentStep--" />
 
   <Button
-    v-if="currentStep + 1 !== steps.length"
     class="step-button"
-    label="Proceed"
+    :label="currentStep + 1 !== steps.length ? 'Proceed' : 'Complete'"
     size="small"
     icon="pi pi-angle-right"
     iconPos="right"
-    @click="currentStep++" />
+    @click="nextStep" />
 </template>
 
 <script setup lang="ts">
@@ -35,7 +34,7 @@
   import Button from 'primevue/button';
   import { reactive, ref } from 'vue';
 
-  const currentStepComponent = ref<{getData: Function,}>();
+  const currentStepComponent = ref<{complete: Function}>();
 
   const steps = [
     DonationOptionPanel,
@@ -49,6 +48,14 @@
     author: '',
     message: '',
   });
+
+  function nextStep() {
+    if (currentStep.value + 1 === steps.length) {
+      currentStepComponent.value!.complete();
+      return;
+    }
+    currentStep.value++
+  }
 </script>
 
 <style scoped>

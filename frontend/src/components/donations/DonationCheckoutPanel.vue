@@ -1,13 +1,5 @@
 <template>
   <div id="checkout"></div>
-
-  <Button
-    class="complete-button"
-    label="Complete"
-    size="small"
-    icon="pi pi-angle-right"
-    :disabled="processing"
-    @click="submitPayment" />
 </template>
 
 <script setup lang="ts">
@@ -19,6 +11,7 @@
 
   const emit = defineEmits(['update']);
   const props = defineProps<{data: Donation}>();
+  defineExpose({complete,})
 
   const processing = ref(true);
   let paymentElement: StripePaymentElement;
@@ -45,7 +38,7 @@
     processing.value = false;
   });
 
-  async function submitPayment() {
+  async function complete() {
     processing.value = true;
     try {
       stripe!.confirmPayment({
