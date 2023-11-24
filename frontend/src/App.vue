@@ -10,10 +10,12 @@
       </div>
     </div>
   </div>
+  <Dialogs/>
 </template>
 
 <script setup lang="ts">
 import AboutMe from '@/components/AboutMe.vue'
+import Dialogs from '@/components/dialogs/Dialogs.vue'
 import DonationPanel from '@/components/donations/DonationPanel.vue';
 import Header from '@/components/Header.vue'
 </script>

@@ -44,6 +44,20 @@ services:
     depends_on:
       - database
       - storage
+      - redis
+  backend_worker:
+    command: python3 manage.py qcluster
+    build:
+      context: backend/
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend/:/app/
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - storage
+      - redis
   storage:
     image: bitnami/minio
     volumes:
@@ -55,6 +69,8 @@ services:
     ports:
       - "9000:9000"
       - "9001:9001"
+  redis:
+    image: redis:latest
 
 volumes:
   postgres-data:

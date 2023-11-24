@@ -20,3 +20,7 @@ class CreatePaymentIntentSerializer(serializers.ModelSerializer):
             'author',
             'amount',
         )
+
+
+class CheckPaymentIntentSerializer(serializers.Serializer):
+    stripe_id = serializers.CharField()
