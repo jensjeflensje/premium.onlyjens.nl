@@ -64,7 +64,7 @@ jobs:
       - name: Install git
         run: apk add git git-lfs
       - name: Checkout
-        uses: actions/checkout@
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           lfs: true
