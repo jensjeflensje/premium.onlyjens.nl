@@ -5,7 +5,6 @@
 <script setup lang="ts">
   import Donation from '@/types/Donation';
   import { BASE_URL, createPaymentIntent, stripe } from '@/api';
-  import Button from 'primevue/button';
   import { ref } from 'vue';
   import { StripeElements, StripePaymentElement } from '@stripe/stripe-js';
 
