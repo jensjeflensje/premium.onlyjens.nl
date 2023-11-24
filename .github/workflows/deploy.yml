@@ -1,0 +1,86 @@
+name: Update deploy
+on: 
+  - push
+  - workflow_dispatch
+
+jobs:
+    backend_build:
+        runs-on: ubuntu-latest
+        container: docker:latest
+        steps:
+            - name: Install git
+              run: apk add git git-lfs
+            - name: Checkout
+              uses: actions/checkout@v2
+              with:
+                fetch-depth: 0
+                lfs: true
+            - name: Docker Login
+              run: docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+            - name: Docker Build
+              run: |
+                cd backend/
+                docker build -f Dockerfile.prod -t ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:${{ github.ref_name }} ./ 
+            - name: Docker Tag Production
+              if: contains(github.ref, 'main')
+              run: |
+                docker tag ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:main ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:production ./ 
+                docker push ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:production
+            - name: Docker Push
+              run: |
+                docker push ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:${{ github.ref_name }}
+    frontend_build:
+      runs-on: ubuntu-latest
+      container: docker:latest
+      steps:
+          - name: Install git
+            run: apk add git git-lfs
+          - name: Checkout
+            uses: actions/checkout@v2
+            with:
+              fetch-depth: 0
+              lfs: true
+          - name: Docker Login
+            run: docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+          - name: Docker Build
+            run: |
+              cd frontend/
+              docker build -f Dockerfile.prod -t ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:${{ github.ref_name }} ./ 
+          - name: Docker Tag Production
+            if: contains(github.ref, 'main')
+            run: |
+              docker tag ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:main ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:production ./ 
+              docker push ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:production
+          - name: Docker Push
+            run: |
+              docker push ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:${{ github.ref_name }}
+    deploy:
+        runs-on: ubuntu-latest
+        container: docker:latest
+        needs:
+          - backend_build
+          - frontend_build
+        steps:
+            - name: Install git
+              run: apk add git git-lfs
+            - name: Checkout
+              uses: actions/checkout@
+              with:
+                fetch-depth: 0
+                lfs: true
+            - name: Prepare credentials
+              run: |
+                mkdir -p ~/.ssh/
+                echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+                chmod 400 ~/.ssh/id_ed25519
+            - name: Copy configs
+              run: |
+                scp -o 'StrictHostKeyChecking no' -i ~/.ssh/id_ed25519 -r ./ci-cd/* root@${{ vars.SERVER_ADDRESS }}:/root/premium.onlyjens.nl/
+            - name: Fix scaling
+              run: |
+                ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_ed25519 root@${{ vars.SERVER_ADDRESS }} "
+                    cd /root/premium.onlyjens.nl/
+                    docker-compose pull
+                    docker-compose up -d
+                    docker-compose run backend python manage.py migrate
+                "
