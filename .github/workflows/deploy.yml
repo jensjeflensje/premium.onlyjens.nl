@@ -24,7 +24,7 @@ jobs:
       - name: Docker Tag Production
         if: contains(github.ref, 'main')
         run: |
-          docker tag ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:main ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:production ./ 
+          docker tag ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:main ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:production
           docker push ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:production
       - name: Docker Push
         run: |
@@ -49,7 +49,7 @@ jobs:
       - name: Docker Tag Production
         if: contains(github.ref, 'main')
         run: |
-          docker tag ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:main ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:production ./ 
+          docker tag ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:main ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:production
           docker push ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:production
       - name: Docker Push
         run: |
