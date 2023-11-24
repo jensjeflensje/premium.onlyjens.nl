@@ -45,7 +45,7 @@ jobs:
       - name: Docker Build
         run: |
           cd frontend/
-          docker build -f Dockerfile.prod -t ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:${{ github.ref_name }} ./
+          docker build -f Dockerfile.prod --target main -t ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:${{ github.ref_name }} ./
       - name: Docker Tag Production
         if: contains(github.ref, 'main')
         run: |
