@@ -32,6 +32,9 @@ jobs:
   frontend_build:
     runs-on: ubuntu-latest
     container: docker:latest
+    env:
+      VITE_STRIPE_PK: ${{ vars.VITE_STRIPE_PK }}
+      VITE_APP_URL: ${{ vars.VITE_APP_URL }}
     steps:
       - name: Install git
         run: apk add git git-lfs
@@ -45,7 +48,13 @@ jobs:
       - name: Docker Build
         run: |
           cd frontend/
-          docker build -f Dockerfile.prod --target main -t ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:${{ github.ref_name }} ./
+          docker build \
+            -f Dockerfile.prod \
+            --target main \
+            --build-arg VITE_STRIPE_PK \
+            --build-arg VITE_APP_URL \
+            -t ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:${{ github.ref_name }} \
+            ./
       - name: Docker Tag Production
         if: contains(github.ref, 'main')
         run: |
