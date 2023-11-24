@@ -46,7 +46,6 @@ if (urlParams.get('payment_status')) {
   } else {
     dialogs.failedDialog = true;
   }
-  window.location.search = '';
 }
 
 if (urlParams.get('from')) {
@@ -58,7 +57,6 @@ if (urlParams.get('from')) {
       dialogs.openSourceDialog = true;
       break;
   }
-  window.location.search = '';
 }
 
 </script>
