@@ -31,6 +31,18 @@ SECRET_KEY = 'django-insecure-1gp^i=+y!6ir0%rz2gzgjycyqb3=dlpl7rpe09x_#lcdia#4tf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG')
 
+if not DEBUG:
+    sentry_sdk.init(
+        dsn=env.str('DJANGO_SENTRY_DSN'),
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        traces_sample_rate=1.0,
+        # Set profiles_sample_rate to 1.0 to profile 100%
+        # of sampled transactions.
+        # We recommend adjusting this value in production.
+        profiles_sample_rate=1.0,
+    )
+
 ALLOWED_HOSTS = ["*"]
 
 
