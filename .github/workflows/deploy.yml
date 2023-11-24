@@ -76,7 +76,7 @@ jobs:
       - name: Copy configs
         run: |
           scp -o 'StrictHostKeyChecking no' -i ~/.ssh/id_ed25519 -r ./ci-cd/* root@${{ vars.SERVER_ADDRESS }}:/root/premium.onlyjens.nl/
-      - name: Fix scaling
+      - name: Docker compose up
         run: |
           ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_ed25519 root@${{ vars.SERVER_ADDRESS }} "
               cd /root/premium.onlyjens.nl/

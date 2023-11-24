@@ -23,7 +23,6 @@ services:
       - .env
     depends_on:
       - database
-      - storage
       - redis
   backend_worker:
     command: python3 manage.py qcluster
@@ -32,7 +31,6 @@ services:
       - .env
     depends_on:
       - database
-      - storage
       - redis
   redis:
     image: redis:latest
