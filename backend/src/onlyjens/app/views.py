@@ -1,4 +1,5 @@
 from django.conf import settings
+from onlyjens.app.utils import send_webhook
 from onlyjens.app.serializers import CreatePaymentIntentSerializer, CheckPaymentIntentSerializer
 from onlyjens.app.models import Payment
 from onlyjens.app.tasks import generate_certificate
@@ -85,6 +86,13 @@ class CheckPaymentIntentView(BasePaymentIntentView):
         payment = self.get_object()
         payment.paid = True
         payment.save()
+
+        name = payment.author or "Anonymous"
+        description = "This donation doesn't have a message."
+        if payment.message:
+            description = f"\"{payment.message}\""
+
+        send_webhook(f"New donation from {name}", description, "6333946")
         
         return Response(status=status.HTTP_204_NO_CONTENT)
 
