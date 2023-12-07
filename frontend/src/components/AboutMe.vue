@@ -38,6 +38,7 @@
       </ul>
       These are some other projects I made:
       <ul>
+        <li><a href="https://github.com/jensjeflensje/minecraft_hats">Minecraft Hats (propeller cap)</a></li>
         <li><a href="https://github.com/jensjeflensje/minecraft_typewriter">Minecraft Typewriter</a></li>
         <li><a href="https://github.com/jensjeflensje/minecraft_seed_finder">Minecraft Seed Finder</a></li>
         <li><a href="https://github.com/jensjeflensje/BalloonsByJens">BalloonsByJens</a></li>
