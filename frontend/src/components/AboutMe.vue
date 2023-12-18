@@ -43,6 +43,10 @@
         <li><a href="https://github.com/jensjeflensje/minecraft_seed_finder">Minecraft Seed Finder</a></li>
         <li><a href="https://github.com/jensjeflensje/BalloonsByJens">BalloonsByJens</a></li>
         <li><a href="https://github.com/jensjeflensje/minecraft_subway">Minecraft Subway</a></li>
+        <li><a href="https://github.com/jensjeflensje/minecraft_blockanimation">Minecraft Block Animation</a></li>
+        <li><a href="https://github.com/jensjeflensje/backgroundx">BackgroundX</a></li>
+        <li><a href="https://github.com/jensjeflensje/minecraft_sheepvideo">Minecraft Sheepvideo</a></li>
+        <li><a href="https://github.com/jensjeflensje/marktplaats-py">marktplaats-py</a></li>
       </ul>
     </template>
   </Paragraph>
