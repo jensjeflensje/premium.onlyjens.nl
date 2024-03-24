@@ -7,9 +7,9 @@ import './style.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faGithub, faYoutube, faDiscord, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faYoutube, faDiscord, faLinkedin, faTiktok } from '@fortawesome/free-brands-svg-icons'
 
-library.add(faGithub, faYoutube, faDiscord, faLinkedin)
+library.add(faGithub, faYoutube, faDiscord, faLinkedin, faTiktok)
 
 createApp(App)
     .use(PrimeVue)
