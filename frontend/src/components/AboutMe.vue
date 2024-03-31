@@ -35,7 +35,7 @@
         <li><a href="https://skin-render.jensderuiter.dev/">Skin Renderer</a></li>
         <li><a href="https://bingomc.net/">BingoMC</a></li>
         <li><a href="https://github.com/jensjeflensje/minecraft_imagery">Minecraft Imagery (ImageryAPI)</a></li>
-        <li><a href="https://butwhe.re">Butwhe.re</a></li>
+        <li><a href="https://github.com/jensjeflensje/img_lookup">Butwhe.re</a></li>
       </ul>
       These are some other projects I made:
       <ul>
@@ -47,6 +47,7 @@
         <li><a href="https://github.com/jensjeflensje/minecraft_blockanimation">Minecraft Block Animation</a></li>
         <li><a href="https://github.com/jensjeflensje/backgroundx">BackgroundX</a></li>
         <li><a href="https://github.com/jensjeflensje/minecraft_sheepvideo">Minecraft Sheepvideo</a></li>
+        <li><a href="https://github.com/jensjeflensje/minecraft_fortnite">Minecraft Fortnite Building (demo)</a></li>
         <li><a href="https://github.com/jensjeflensje/marktplaats-py">marktplaats-py</a></li>
       </ul>
     </template>
