@@ -14,6 +14,7 @@ from rest_framework.response import Response
 
 import stripe
 
+from onlyjens.app.consumers import send_to_channel_layer
 
 stripe.api_key = settings.STRIPE_SK
 stripe.public_key = settings.STRIPE_PK
@@ -84,15 +85,25 @@ class CheckPaymentIntentView(BasePaymentIntentView):
             return response
 
         payment = self.get_object()
+        initially_paid = payment.paid
         payment.paid = True
         payment.save()
 
-        name = payment.author or "Anonymous"
-        description = "This donation doesn't have a message."
-        if payment.message:
-            description = f"\"{payment.message}\""
+        if not initially_paid:
+            name = payment.author or "Anonymous"
+            description = "This donation doesn't have a message."
+            if payment.message:
+                description = f"\"{payment.message}\""
 
-        send_webhook(f"New donation from {name}", description, "6333946")
+            send_webhook(f"New donation from {name}", description, "6333946")
+
+            send_to_channel_layer("donations",
+                {
+                    "author": name,
+                    "message": payment.message,
+                    "amount": payment.amount,
+                }
+            )
         
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -120,7 +131,6 @@ class GetCertificateView(BasePaymentIntentView):
             return Response({"url": url})
         except ClientError as err:
             task = async_task(generate_certificate, payment.id, payment.author, payment.created_at.strftime("%d/%m/%Y"))
-            print("task", task)
         
         return Response(status=status.HTTP_204_NO_CONTENT)
 

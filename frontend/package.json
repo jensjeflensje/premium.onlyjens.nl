@@ -15,7 +15,8 @@
     "@stripe/stripe-js": "^2.2.0",
     "primeicons": "^6.0.1",
     "primevue": "^3.38.1",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
