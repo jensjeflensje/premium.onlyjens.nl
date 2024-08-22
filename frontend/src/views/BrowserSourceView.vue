@@ -46,7 +46,7 @@ function showOrQueueDonation(donation: Donation) {
 let ws;
 
 function connectWs() {
-  ws = new WebSocket(`${BASE_URL}/ws/donations/`)
+  ws = new WebSocket(`${BASE_URL.replace("http", "ws")}/ws/donations/`);
 
   ws.onopen = function(){
     console.log("WebSocket connected!");
