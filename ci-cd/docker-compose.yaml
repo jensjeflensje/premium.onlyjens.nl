@@ -17,7 +17,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
   backend:
-    command: gunicorn --bind=0.0.0.0:8000 onlyjens.wsgi:application
+    command: daphne -b=0.0.0.0 -p 8000 onlyjens.asgi:application
     image: ghcr.io/jensjeflensje/premium.onlyjens.nl-backend:production
     env_file:
       - .env

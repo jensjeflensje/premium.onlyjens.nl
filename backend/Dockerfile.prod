@@ -9,6 +9,5 @@ COPY . /app
 COPY requirements.txt /tmp/requirements.txt
 
 RUN pip3 install -r /tmp/requirements.txt
-RUN pip3 install gunicorn
 
 EXPOSE 8000
