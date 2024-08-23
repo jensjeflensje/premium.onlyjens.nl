@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 
-import { nextTick, Ref, ref } from 'vue';
+import { nextTick, onMounted, Ref, ref } from 'vue';
 import Donation from '@/types/Donation.ts';
 import { WS_URL } from '@/api.ts';
 
@@ -46,6 +46,7 @@ function showOrQueueDonation(donation: Donation) {
 let ws;
 
 function connectWs() {
+  console.log(`Conecting to WebSocket URL: ${WS_URL}`);
   ws = new WebSocket(`${WS_URL}/ws/donations/`);
 
   ws.onopen = function(){
@@ -60,7 +61,7 @@ function connectWs() {
   ws.onclose = () => setTimeout(connectWs, 1000);
 }
 
-connectWs();
+onMounted(connectWs);
 
 </script>
 
