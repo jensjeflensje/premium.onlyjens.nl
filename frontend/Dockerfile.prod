@@ -5,6 +5,7 @@ COPY . /app
 
 ARG VITE_STRIPE_PK
 ARG VITE_APP_URL
+ARG VITE_WS_URL
 
 RUN yarn
 RUN yarn run build
