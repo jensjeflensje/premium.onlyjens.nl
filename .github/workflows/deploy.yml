@@ -35,6 +35,7 @@ jobs:
     env:
       VITE_STRIPE_PK: ${{ vars.VITE_STRIPE_PK }}
       VITE_APP_URL: ${{ vars.VITE_APP_URL }}
+      VITE_WS_URL: ${{ vars.VITE_WS_URL }}
     steps:
       - name: Install git
         run: apk add git git-lfs
@@ -53,6 +54,7 @@ jobs:
             --target main \
             --build-arg VITE_STRIPE_PK \
             --build-arg VITE_APP_URL \
+            --build-arg VITE_WS_URL \
             -t ghcr.io/jensjeflensje/premium.onlyjens.nl-frontend:${{ github.ref_name }} \
             ./
       - name: Docker Tag Production
