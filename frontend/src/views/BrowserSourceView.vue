@@ -18,7 +18,7 @@
 
 import { nextTick, Ref, ref } from 'vue';
 import Donation from '@/types/Donation.ts';
-import { BASE_URL, WS_URL } from '@/api.ts';
+import { WS_URL } from '@/api.ts';
 
 const donationAudio: Ref<HTMLAudioElement | undefined> = ref();
 const currentDonation: Ref<Donation | undefined> = ref();
