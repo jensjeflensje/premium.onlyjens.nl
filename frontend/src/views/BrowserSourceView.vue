@@ -18,7 +18,7 @@
 
 import { nextTick, Ref, ref } from 'vue';
 import Donation from '@/types/Donation.ts';
-import { BASE_URL } from '@/api.ts';
+import { BASE_URL, WS_URL } from '@/api.ts';
 
 const donationAudio: Ref<HTMLAudioElement | undefined> = ref();
 const currentDonation: Ref<Donation | undefined> = ref();
@@ -46,7 +46,7 @@ function showOrQueueDonation(donation: Donation) {
 let ws;
 
 function connectWs() {
-  ws = new WebSocket(`${BASE_URL.replace("http", "ws")}/ws/donations/`);
+  ws = new WebSocket(`${WS_URL}/ws/donations/`);
 
   ws.onopen = function(){
     console.log("WebSocket connected!");

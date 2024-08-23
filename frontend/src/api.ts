@@ -3,6 +3,7 @@ import { loadStripe } from '@stripe/stripe-js/pure';
 
 export const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PK);
 export const BASE_URL = import.meta.env.VITE_APP_URL;
+export const WS_URL = import.meta.env.VITE_WS_URL;
 
 export async function createPaymentIntent(donation: Donation) : Promise<string> {
     const res = await fetch('/api/payment-intent', {
