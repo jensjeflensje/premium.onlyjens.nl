@@ -18,7 +18,7 @@ import ShadeBar from '@/components/ShadeBar.vue'
 
 const socialAccounts = [
   {icon: 'fa-github', link: 'https://github.com/jensjeflensje'},
-  {icon: 'fa-youtube', link: 'https://www.youtube.com/@jederu'},
+  {icon: 'fa-youtube', link: 'https://www.youtube.com/@jensderouter'},
   {icon: 'fa-discord', link: 'https://discord.gg/U8DN52byBG'},
   {icon: 'fa-linkedin', link: 'https://www.linkedin.com/in/jens-de-ruiter-7557551b1/'},
   {icon: 'fa-tiktok', link: 'https://www.tiktok.com/@jensderouter'},
