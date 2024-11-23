@@ -32,6 +32,7 @@
       These are some of my popular (free-to-use) projects:
       <ul>
         <li><a href="https://jens.skin/">Jens's Skin Generator</a></li>
+        <li><a href="https://github.com/jensjeflensje/skin-customizer">Skin Customizer</a></li>
         <li><a href="https://skin-render.jensderuiter.dev/">Skin Renderer</a></li>
         <li><a href="https://bingomc.net/">BingoMC</a></li>
         <li><a href="https://github.com/jensjeflensje/minecraft_imagery">Minecraft Imagery (ImageryAPI)</a></li>
