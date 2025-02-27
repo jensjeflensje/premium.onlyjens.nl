@@ -91,7 +91,7 @@ jobs:
         run: |
           ssh -o 'StrictHostKeyChecking no' -i ~/.ssh/id_ed25519 root@${{ vars.SERVER_ADDRESS }} "
               cd /root/premium.onlyjens.nl/
-              docker-compose pull
-              docker-compose up -d
-              docker-compose run backend python manage.py migrate
+              docker compose pull
+              docker compose up -d
+              docker compose run backend python manage.py migrate
           "
