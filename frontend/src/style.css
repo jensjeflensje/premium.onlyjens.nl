@@ -1,11 +1,8 @@
-#main {
-  color: #f1f1ff;
-  background-color: #22272E;
-}
-
 html, body {
   margin: 0;
   padding: 0;
+  color: #f1f1ff;
+  background-color: #22272E;
 }
 
 a {
