@@ -4,7 +4,7 @@
     emoji="👋"
     title="Hi, I'm Jens">
     <template v-slot:content>
-      I'm a 20-year-old from Rotterdam, The Netherlands.
+      I'm a 21-year-old from Rotterdam, The Netherlands.
       I'm a very active person, always getting excited about new ideas.
       I'm pretty much the definition of a self-taught programmer,
       and I think it's very important to keep on learning and growing your skills every single day.
