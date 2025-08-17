@@ -18,7 +18,7 @@
     currency="EUR"
     locale="nl-NL"
     :disabled="donationType.value !== 'custom'"
-    :min="donationType.amount" />
+    :min="donationType.minAmount" />
 
 </template>
 
